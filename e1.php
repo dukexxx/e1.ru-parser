@@ -1,8 +1,8 @@
 <?
 /************************************
 *****Парсер e1.ru Недвижимости*******
-**********dukexxx copy 2013**********
-*************icq 556288**************
+******dukexxx Zhukov A copy 2013*****
+**************icq 556288*************
 ************************************/
 class parce_e1 {
 
@@ -141,10 +141,10 @@ public $bad_words = array  ("по факту заселения",
 	}
 	
 	public function get_phone($content) {
-	$this->res = '';
+	$result = '';
 		preg_match("/<td>Телефон:<\/td>\s*<td>([^<]*)<\/td>/is", $content, $telsin); 
-		$this->res = $this->in_number($telsin[1]);
-	return $this->res;	
+		$result = $this->in_number($telsin[1]);
+	return $result;	
 	}
 	
 	public function get_params($content) {
@@ -220,7 +220,7 @@ $e1 = new parce_e1;
 //настройки
 $pages = 3;     //колличество страниц которое будет пройдено
 $e1->tip = 1;   //тип (1 - квартиры, 2 - комнаты)
-$e1->proxy = '85.223.220.198:80'; // прокси для соединения , если парсить напрямую то false
+$e1->proxy = '91.233.188.154:8080'; // прокси для соединения , если парсить напрямую то false
 $e1->debug = 0; //режим отладки (0, 1) 
 //конец настроек
 
@@ -232,7 +232,7 @@ $urls = $e1->get_urls($maincontent);
 
 	foreach ($urls as $link) {
 	    print 'Ссылка на страницу: <a href="'.$link.'">'.$link.'</a><br/>';   
-		$incont = $e1->get($link);
+		$incont = $e1->get($link);      
 		//$phone = $e1->get_phone($incont);  //при необходимости можно получить телефон отдельно
 		$params = $e1->get_params($incont);  //получаем параметры объявления
 		/*
